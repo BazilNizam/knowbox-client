@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faSearch, faTimes, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import Logo from "../assets/Logo.svg"; // Import your SVG logo
 
@@ -90,6 +90,21 @@ const Navbar = () => {
               </motion.li>
             )
           )}
+          {/* Cart Icon */}
+          <motion.li
+            whileHover={{
+              scale: 1.1,
+              backgroundColor: "#4cb2c4",
+              borderRadius: "0.5rem",
+              transition: { duration: 0.15 },
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="px-4 py-2 text-lg cursor-pointer transition-all duration-300"
+          >
+            <a href="/cart">
+              <FontAwesomeIcon icon={faShoppingCart} size="lg" />
+            </a>
+          </motion.li>
         </ul>
 
         {/* Mobile Menu */}
@@ -134,12 +149,27 @@ const Navbar = () => {
                     whileTap={{ scale: 0.95 }}
                     className="px-4 py-2 text-lg cursor-pointer transition-all duration-300"
                   >
-                    <a href={`/${item.toLowerCase().replace(" ", "-")}`}>
+                    <a href={`/${item.toLowerCase().replace(" ", "-")}`} >
                       {item}
                     </a>
                   </motion.li>
                 )
               )}
+              {/* Cart Icon in Mobile Menu */}
+              <motion.li
+                whileHover={{
+                  scale: 1.1,
+                  backgroundColor: "#4cb2c4",
+                  borderRadius: "0.5rem",
+                  transition: { duration: 0.15 },
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="px-4 py-2 text-lg cursor-pointer transition-all duration-300"
+              >
+                <a href="/cart">
+                  <FontAwesomeIcon icon={faShoppingCart} size="lg" />
+                </a>
+              </motion.li>
             </ul>
           </div>
         </motion.div>
