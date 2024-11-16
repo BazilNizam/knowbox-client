@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
+import Logo from "../assets/Logo.svg"; // Import your SVG logo
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,21 +33,25 @@ const Navbar = () => {
     <nav className="bg-blue-dianne-950 text-white shadow-lg relative">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <div className="text-2xl font-bold">
-          <a href="/">KnowBox</a>
+        <div>
+          <a href="/">
+            <img src={Logo} alt="Logo" className="w-16 h-16" />{" "}
+            {/* Increased size */}
+          </a>
         </div>
 
         {/* Hamburger Button */}
         <button
           className="text-white md:hidden z-20"
           onClick={() => setIsOpen(!isOpen)}
+          style={{ top: "8px" }} // Adjust this value to move the hamburger down
         >
           <motion.div
             initial={{ rotate: 0 }}
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
           >
-            <FontAwesomeIcon icon={isOpen ? faTimes : faBars} size="lg" />
+            <FontAwesomeIcon icon={isOpen ? faTimes : faBars} size="2x" />
           </motion.div>
         </button>
 
@@ -81,9 +86,7 @@ const Navbar = () => {
                 whileTap={{ scale: 0.95 }}
                 className="px-4 py-2 text-lg cursor-pointer transition-all duration-300"
               >
-                <a href={`/${item.toLowerCase().replace(" ", "-")}`}>
-                  {item}
-                </a>
+                <a href={`/${item.toLowerCase().replace(" ", "-")}`}>{item}</a>
               </motion.li>
             )
           )}
@@ -91,7 +94,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <motion.div
-          className={`absolute top-16 left-0 w-full bg-blue-dianne-900 text-white z-10 ${
+          className={`absolute top-24 left-0 w-full bg-blue-dianne-900 text-white z-10 ${
             isOpen ? "block" : "hidden"
           }`}
           initial="hidden"
